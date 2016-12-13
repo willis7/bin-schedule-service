@@ -50,3 +50,6 @@ _testmain.go
 
 vendor
 /relenv.iml
+
+### VisualStudioCode ###
+.vscode/*

@@ -1,0 +1,11 @@
+hash: f87bf81b3a44a94d55a001c0653c4c6d7e072ff46396cd05099ae15e7304191d
+updated: 2016-12-11T16:09:48.648649115Z
+imports:
+- name: golang.org/x/net
+  version: 4971afdc2f162e82d185353533d3cf16188a9f4e
+  subpackages:
+  - html
+  - html/atom
+- name: gopkg.in/ddo/pick.v1
+  version: ea12a1c4c8d760f5194e6d5402447fd559f8abe8
+testImports: []
