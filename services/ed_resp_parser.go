@@ -9,6 +9,7 @@ import (
 	"github.com/willis7/bin-schedule-service/models"
 )
 
+// TODO: fix this nastyness! these values are persisting across tests!!
 // Maintain a splice of the data from the response html
 var headers, em []string
 
@@ -56,7 +57,7 @@ func ResultParser(r io.Reader) models.Schedule {
 
 	traverse(doc)
 
-	output := models.Schedule{Postcode: "EX5 3DX", RecyclingDate: em[0], RubbishDate: em[1]}
+	output := models.Schedule{Postcode: "fake", RecyclingDate: em[0], RubbishDate: em[1]}
 
 	return output
 }

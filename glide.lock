@@ -1,5 +1,5 @@
-hash: d07359b0b34841327058acdb2601083254717310639f5571fc799df1467a5f10
-updated: 2016-12-16T23:18:45.055922448Z
+hash: 9a8ef93ad96d3d633f0e7eee12d328cc6604c30c6118b70189e08f2a96320001
+updated: 2016-12-22T22:47:44.040333013Z
 imports:
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
@@ -14,4 +14,6 @@ imports:
   - html/atom
 - name: gopkg.in/ddo/pick.v1
   version: ea12a1c4c8d760f5194e6d5402447fd559f8abe8
+- name: gopkg.in/jarcoal/httpmock.v1
+  version: 6aa33143427f6eb0bebcc0af42e8db85e39a42c0
 testImports: []
