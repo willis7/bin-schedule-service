@@ -3,10 +3,10 @@
 # USAGE:
 #
 # # Build image
-# docker build -t trash-collection-svc .
+# docker build -t bin-schedule-svc .
 #
 # # Run container
-# docker run -it --rm --name my-trash-collection-svc -p 8080:8080 trash-collection-svc
+# docker run -it --rm --name my-bin-schedule-svc -p 8080:8080 bin-schedule-svc
 #
 FROM golang:1.7.3-onbuild
 

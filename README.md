@@ -13,7 +13,11 @@ A RESTful API for letting consumers know when their bins are being collected.
 
 Here's how the application is structured.
 
-* **base**: base contains the basic (core) functionality for the api. Base contains all the source code that cannot be categorized into a submodule.
+* **base**: Contains the basic (core) functionality for the api. Base contains all the source code that cannot be categorized into a submodule.
+* **services**: Business logic and calls to external services.
+* **models**:  Describes the data model of the application
+* **handlers**:  Implements the application’s application handlers
+* **routers**: Implements the HTTP request routers for the API
 
 
 ### Example Response

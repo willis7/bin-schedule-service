@@ -1,24 +1,30 @@
 package main
 
 import (
-	"fmt"
-	. "github.com/willis7/bin-schedule-service/base"
-	"net/url"
+	"log"
+	"net/http"
+
+	"github.com/willis7/bin-schedule-service/handlers"
+	"github.com/willis7/bin-schedule-service/services"
+	"github.com/willis7/bin-schedule-service/routers"
+	"github.com/urfave/negroni"
 )
 
-var postcode = "EX5 3EL"
-
 func main() {
-	// Construct the URL with params
-	u := "http://eastdevon.gov.uk/addressfinder"
-	vals := make(url.Values)
-	vals.Set("qtype", "bins")
-	vals.Set("term", fmt.Sprintf("%s", postcode))
-	fullUrl := u + "?" + vals.Encode()
 
-	response, err := GetBinDates(fullUrl)
-	if err != nil {
-		fmt.Sprintf("GetBinDates: %v", err)
-	}
-	fmt.Printf("%#v", response)
+	app := &handlers.App{Schedule: services.EastDevonClient{}}
+
+	// Get the mux router object
+    router := routers.InitRoutes(app)
+
+	// Create a negroni instance
+    n := negroni.Classic()
+    n.UseHandler(router)
+
+	server := &http.Server{
+        Addr:    ":8080",
+        Handler: n,
+    }
+    log.Println("Listening...")
+	log.Fatal(server.ListenAndServe())
 }

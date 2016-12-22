@@ -1,4 +1,4 @@
-package base
+package services
 
 import (
 	"io"
@@ -6,14 +6,8 @@ import (
 	"strings"
 
 	"golang.org/x/net/html"
+	"github.com/willis7/bin-schedule-service/models"
 )
-
-// BinSchedule structures the information returned from the external service
-type BinSchedule struct {
-	Postcode      string
-	RecyclingDate string
-	RubbishDate   string
-}
 
 // Maintain a splice of the data from the response html
 var headers, em []string
@@ -54,7 +48,7 @@ func extractType(n *html.Node) string {
 }
 
 // ResultParser takes a io.Reader and parses the dates for both Rubbish and Recycling
-func ResultParser(r io.Reader) BinSchedule {
+func ResultParser(r io.Reader) models.Schedule {
 	doc, err := html.Parse(r)
 	if err != nil {
 		log.Fatal(err)
@@ -62,7 +56,7 @@ func ResultParser(r io.Reader) BinSchedule {
 
 	traverse(doc)
 
-	output := BinSchedule{Postcode: "EX5 3DX", RecyclingDate: em[0], RubbishDate: em[1]}
+	output := models.Schedule{Postcode: "EX5 3DX", RecyclingDate: em[0], RubbishDate: em[1]}
 
 	return output
 }

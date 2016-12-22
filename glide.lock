@@ -1,6 +1,12 @@
-hash: f87bf81b3a44a94d55a001c0653c4c6d7e072ff46396cd05099ae15e7304191d
-updated: 2016-12-11T16:09:48.648649115Z
+hash: d07359b0b34841327058acdb2601083254717310639f5571fc799df1467a5f10
+updated: 2016-12-16T23:18:45.055922448Z
 imports:
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/mux
+  version: 0eeaf8392f5b04950925b8a69fe70f110fa7cbfc
+- name: github.com/urfave/negroni
+  version: fde5e16d32adc7ad637e9cd9ad21d4ebc6192535
 - name: golang.org/x/net
   version: 4971afdc2f162e82d185353533d3cf16188a9f4e
   subpackages:
