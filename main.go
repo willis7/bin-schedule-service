@@ -8,9 +8,14 @@ import (
 	"github.com/willis7/bin-schedule-service/services"
 	"github.com/willis7/bin-schedule-service/routers"
 	"github.com/urfave/negroni"
+	"os"
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
 
 	app := &handlers.App{Schedule: services.EastDevonClient{}}
 
@@ -22,7 +27,7 @@ func main() {
     n.UseHandler(router)
 
 	server := &http.Server{
-        Addr:    ":8080",
+        Addr:    ":" + port,
         Handler: n,
     }
     log.Println("Listening...")
