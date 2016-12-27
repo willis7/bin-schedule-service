@@ -1,20 +1,21 @@
 language: go
-
 go:
-  - 1.6
-  - 1.7
-  - tip
-
+- 1.6
+- 1.7
+- tip
 before_install:
-  - go get -v github.com/Masterminds/glide
-  - cd $GOPATH/src/github.com/Masterminds/glide && git checkout tags/v0.12.3 && go install && cd -
-  - go get github.com/mattn/goveralls
-
+- go get -v github.com/Masterminds/glide
+- cd $GOPATH/src/github.com/Masterminds/glide && git checkout tags/v0.12.3 && go install
+  && cd -
+- go get github.com/mattn/goveralls
 install:
-  - make install
-
+- make install
 script:
-  - make test
-
+- make test
 after_success:
-  - $HOME/gopath/bin/goveralls -service=travis-ci
+- "$HOME/gopath/bin/goveralls -service=travis-ci"
+deploy:
+  provider: heroku
+  api_key:
+    secure: Me1vJBymz3mfCDEKBmXFVjUT0dDA3yjihlwE96fGgKdudrsjtsinS7u4gspqgM7ZoTH6zczu3iCH+2EYAdxkmMUH28AwRcaMsnIHkKRbHwRyztMVZL2hRfDG2id0zhJpFF0MPPUq86RrUP4E4sondVd5jyjS1ECtVlnEwawk3xFQ07rXUfhOsjxalPQ/6LHZR2ctNfYzA1u7SIUqR0pNw8pHWW7L2VWEbokF/Iu/IhB88vticXHEaohGnXzByywWZgNNnoxwtsbBeXxNidg+KKPMPJShgWLGJMUiXrCOc+OLMdoVD2vbmCiNuVXbv4UrnV2XyUeXz11EiCbhVZSMZeCskxC5SiKMY0EaszH40lv45Fh9XgxX5qN1ABg7A0kEp1LC67NQGTjOEPXbroaKReaZYmeVN4mO+2SZ7jYjSrBLCahbgfBIQl/NX4cRRG+W03JmoZKJ1r62g5ORVScsYE7zy82+TR99qmuqxKCMm9Us40W1VhDQEn4osKWw+yBoqUwPZ3YKKu3wO0rU/MNPVFghnVEJI9OJ0VotnPSp2aWoYXVhqPUzrz3b4VOJkuhB5hPhj07bPIsmD9VP2Zm0CroFadMQDcJnAtClP7cc6HvDToWOB5FszKYR6o2STWUB4lRu/0HYBFwcCM6otKWBKPw9RqFJPHPNv0BFv0qRoYs=
+  app: protected-ridge-42972
