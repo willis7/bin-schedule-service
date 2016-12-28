@@ -15,7 +15,7 @@ type EastDevonClient struct {}
 
 // Get returns an array of Schedule structs which have been returned from
 func (c EastDevonClient) Get(postcode string) ([]models.Schedule, error) {
-// TODO: seperate the request and the format into their own functions
+// TODO: seperate the request and the format into their own method
 	// Construct the URL with params
 	u := "http://eastdevon.gov.uk/addressfinder"
 	vals := make(url.Values)
@@ -42,13 +42,18 @@ func (c EastDevonClient) Get(postcode string) ([]models.Schedule, error) {
 		return nil, decodeErr
 	}
 
-	var schedules []models.Schedule
-	// Format the response into the canonical model
-	for _,it := range data {
-		schedule := ResultParser(bytes.NewBufferString(it.Result))
-		schedules = append(schedules, schedule)
-	}
+	schedules := CanonicalFormat(data, postcode)
 
 	// return payload, nil
 	return schedules, nil
+}
+
+// CanonicalFormat takes the response and
+func CanonicalFormat(data []models.EastDevonResponse, postcode string) []models.Schedule {
+	var schedules []models.Schedule
+	for _, it := range data {
+		schedule := ResultParser(bytes.NewBufferString(it.Result), postcode)
+		schedules = append(schedules, schedule)
+	}
+	return schedules
 }
