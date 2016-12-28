@@ -9,7 +9,6 @@ import (
 	"github.com/willis7/bin-schedule-service/models"
 )
 
-// TODO: fix this nastyness! these values are persisting across tests!!
 // Maintain a splice of the data from the response html
 var headers, em []string
 
@@ -49,15 +48,19 @@ func extractType(n *html.Node) string {
 }
 
 // ResultParser takes a io.Reader and parses the dates for both Rubbish and Recycling
-func ResultParser(r io.Reader) models.Schedule {
+func ResultParser(r io.Reader, postcode string) models.Schedule {
 	doc, err := html.Parse(r)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// clear the global arrays
+	headers = nil
+	em = nil
+
 	traverse(doc)
 
-	output := models.Schedule{Postcode: "fake", RecyclingDate: em[0], RubbishDate: em[1]}
+	output := models.Schedule{Postcode: postcode, RecyclingDate: em[0], RubbishDate: em[1]}
 
 	return output
 }
